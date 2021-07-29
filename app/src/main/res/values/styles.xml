@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name ="TitleText" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">42sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#686858</item>
+    </style>
+
+    <style name="MainCircularButtons" parent="@style/Widget.AppCompat.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textButtonColor</item>
+    </style>
+
+    <style name="SellingOptionsButtons" parent="@style/Widget.AppCompat.Button">
+        <item name="android:textColor">@color/textButtonColor</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="dropDownCategory" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <style name="itemNameTextView" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:text"></item>
+    </style>
+
+    <style name="multiLineEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:text"></item>
+        <item name="android:hint">Enter The Item Description</item>
+    </style>
+
+    <style name="recyclerviewItemName" parent="@style/itemNameTextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
