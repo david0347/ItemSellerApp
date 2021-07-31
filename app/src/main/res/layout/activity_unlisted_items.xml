@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/recyclerView"
+        android:id="@+id/scrollView"
         android:layout_width="409dp"
         android:layout_height="640dp"
         android:layout_marginStart="8dp"
@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/unlistedRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </ScrollView>

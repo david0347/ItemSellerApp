@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToUnlisted(View view){
-
+        Intent intent = new Intent(this, UnlistedItems.class);
+        startActivity(intent);
     }
 
     public void goToAddItems(View view){

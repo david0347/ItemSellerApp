@@ -53,7 +53,7 @@ public class AddItems extends AppCompatActivity {
             boughtFor = Double.parseDouble(df.format(prices[0]));
             sellFor = Double.parseDouble(df.format(prices[1]));
 
-            //if
+            //If values are greater than 0, create object parameters
             if(boughtFor > 0 || sellFor > 0){
                 newItem.setCategory(category.getSelectedItem().toString());
                 newItem.setName(itemName.getText().toString());
@@ -64,6 +64,14 @@ public class AddItems extends AppCompatActivity {
 
                 itemDB.itemDao().addItem(newItem);
 
+                //Print successful
+                Toast.makeText(AddItems.this, "Added Item", Toast.LENGTH_SHORT).show();
+
+                //Go back to main
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+                //Else print out error message and reset bought/sell prices
             }else{
                 Toast.makeText(AddItems.this, "Enter numerical values", Toast.LENGTH_SHORT).show();
                 itemBuy.setText("");
