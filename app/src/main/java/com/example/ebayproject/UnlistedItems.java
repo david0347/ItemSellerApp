@@ -1,6 +1,7 @@
 package com.example.ebayproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -25,13 +26,19 @@ public class UnlistedItems extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        int count;
-
-        count = itemDB.itemDao().tableSize();
-        Toast.makeText(UnlistedItems.this, String.valueOf(count), Toast.LENGTH_SHORT).show();
-
         recyclerView = findViewById(R.id.unlistedRecyclerView);
 
+        //Fill variables with database items
+        name = itemDB.itemDao().getItemNames();
+        desc = itemDB.itemDao().getItemDesc();
+        status = itemDB.itemDao().getItemStatus();
+        category = itemDB.itemDao().getItemCategory();
+        buyPrice = itemDB.itemDao().getItemBuyPrice();
+        sellPrice = itemDB.itemDao().getItemSellPrice();
+
+        UnlistedAdapter unlistedAdapter = new UnlistedAdapter(this, name, desc, status, buyPrice, sellPrice, category);
+        recyclerView.setAdapter(unlistedAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
