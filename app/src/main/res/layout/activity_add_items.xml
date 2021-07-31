@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/etxtItemName"
                 style="@style/itemNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,11 +39,11 @@
                 android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/spinner3"
+                app:layout_constraintStart_toEndOf="@+id/spnrCategories"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/etxtItemDesc"
                 style="@style/multiLineEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,21 +56,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                app:layout_constraintTop_toBottomOf="@+id/etxtItemName" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/spnrCategories"
                 style="@style/dropDownCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/items_category"
-                app:layout_constraintBottom_toBottomOf="@+id/editText5"
-                app:layout_constraintEnd_toStartOf="@+id/editText5"
+                app:layout_constraintBottom_toBottomOf="@+id/etxtItemName"
+                app:layout_constraintEnd_toStartOf="@+id/etxtItemName"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/boughtForPrice"
+                android:id="@+id/etxtBuyPrice"
                 style="@style/itemNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,13 +81,13 @@
                 android:hint="0.00"
                 android:inputType="textPersonName"
                 android:text=""
-                app:layout_constraintEnd_toStartOf="@+id/askingFor"
+                app:layout_constraintEnd_toStartOf="@+id/etxtAskingPrice"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintTop_toBottomOf="@+id/etxtItemDesc" />
 
             <EditText
-                android:id="@+id/askingFor"
+                android:id="@+id/etxtAskingPrice"
                 style="@style/itemNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,11 +99,11 @@
                 android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/boughtForPrice"
-                app:layout_constraintTop_toTopOf="@+id/boughtForPrice" />
+                app:layout_constraintStart_toEndOf="@+id/etxtBuyPrice"
+                app:layout_constraintTop_toTopOf="@+id/etxtBuyPrice" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btnAddItem"
                 style="@style/MainCircularButtons"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,15 +111,16 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/rounded_button"
+                android:onClick="addItem"
                 android:text="Add Item"
                 android:textCursorDrawable="@drawable/long_round_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/boughtForPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/etxtBuyPrice" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/btnCancel"
                 style="@style/MainCircularButtons"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -133,7 +134,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button6" />
+                app:layout_constraintTop_toBottomOf="@+id/btnAddItem" />
 
             <TextView
                 android:id="@+id/spacer"
@@ -142,7 +143,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button7" />
+                app:layout_constraintTop_toBottomOf="@+id/btnCancel" />
 
             <TextView
                 android:id="@+id/txtCategory"
@@ -150,9 +151,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Select Category"
-                app:layout_constraintBottom_toTopOf="@+id/spinner3"
-                app:layout_constraintEnd_toEndOf="@+id/spinner3"
-                app:layout_constraintStart_toStartOf="@+id/spinner3" />
+                app:layout_constraintBottom_toTopOf="@+id/spnrCategories"
+                app:layout_constraintEnd_toEndOf="@+id/spnrCategories"
+                app:layout_constraintStart_toStartOf="@+id/spnrCategories" />
 
             <TextView
                 android:id="@+id/txtDescription"
@@ -160,9 +161,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Item Description"
-                app:layout_constraintBottom_toTopOf="@+id/editText6"
-                app:layout_constraintEnd_toEndOf="@+id/editText6"
-                app:layout_constraintStart_toStartOf="@+id/editText6" />
+                app:layout_constraintBottom_toTopOf="@+id/etxtItemDesc"
+                app:layout_constraintEnd_toEndOf="@+id/etxtItemDesc"
+                app:layout_constraintStart_toStartOf="@+id/etxtItemDesc" />
 
             <TextView
                 android:id="@+id/txtBuyPrice"
@@ -170,9 +171,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Buy Price"
-                app:layout_constraintBottom_toTopOf="@+id/boughtForPrice"
-                app:layout_constraintEnd_toEndOf="@+id/boughtForPrice"
-                app:layout_constraintStart_toStartOf="@+id/boughtForPrice" />
+                app:layout_constraintBottom_toTopOf="@+id/etxtBuyPrice"
+                app:layout_constraintEnd_toEndOf="@+id/etxtBuyPrice"
+                app:layout_constraintStart_toStartOf="@+id/etxtBuyPrice" />
 
             <TextView
                 android:id="@+id/txtAsking"
@@ -180,9 +181,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Asking Price"
-                app:layout_constraintBottom_toTopOf="@+id/askingFor"
-                app:layout_constraintEnd_toEndOf="@+id/askingFor"
-                app:layout_constraintStart_toStartOf="@+id/askingFor" />
+                app:layout_constraintBottom_toTopOf="@+id/etxtAskingPrice"
+                app:layout_constraintEnd_toEndOf="@+id/etxtAskingPrice"
+                app:layout_constraintStart_toStartOf="@+id/etxtAskingPrice" />
 
             <TextView
                 android:id="@+id/txtItemName"
@@ -190,9 +191,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Item Name"
-                app:layout_constraintBottom_toTopOf="@+id/editText5"
-                app:layout_constraintEnd_toEndOf="@+id/editText5"
-                app:layout_constraintStart_toStartOf="@+id/editText5" />
+                app:layout_constraintBottom_toTopOf="@+id/etxtItemName"
+                app:layout_constraintEnd_toEndOf="@+id/etxtItemName"
+                app:layout_constraintStart_toStartOf="@+id/etxtItemName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -23,16 +23,20 @@ public class Items {
     private String status;
 
     @ColumnInfo(name = "itemBuyPrice")
-    private String buyPrice;
+    private double buyPrice;
 
     @ColumnInfo(name = "itemSellPrice")
-    private String sellPrice;
+    private double sellPrice;
 
     @ColumnInfo(name = "itemCategory")
     private String category;
 
 
     //setters and getters
+    public int getItemID(){return itemID;}
+
+    public void setItemID(int id){itemID = id;}
+
     public String getName() {
         return name;
     }
@@ -57,19 +61,19 @@ public class Items {
         this.status = status;
     }
 
-    public String getBuyPrice() {
+    public double getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(String buyPrice) {
+    public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
     }
 
-    public String getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(String sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
@@ -82,6 +86,6 @@ public class Items {
     }
 
     //Empty Constructor
-    public Items(){};
+    public Items(){}
 
 }
