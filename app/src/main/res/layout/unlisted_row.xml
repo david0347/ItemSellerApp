@@ -45,29 +45,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
-            <Button
-                android:id="@+id/btnList"
-                style="@style/MainCircularButtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/long_round_button"
-                android:text="List"
-                app:layout_constraintBottom_toTopOf="@+id/btnEdit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btnEdit"
-                style="@style/MainCircularButtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/long_round_button"
-                android:text="Edit"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/btnList"
-                app:layout_constraintTop_toBottomOf="@+id/btnList" />
-
             <TextView
                 android:id="@+id/txtBoughtFor"
                 android:layout_width="wrap_content"
@@ -84,8 +61,28 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/txtBoughtFor"
-                app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+                app:layout_constraintEnd_toStartOf="@+id/button8"
                 app:layout_constraintStart_toEndOf="@+id/txtBoughtFor" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                app:layout_constraintBottom_toTopOf="@+id/button8"
+                app:layout_constraintStart_toStartOf="@+id/button8"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button7" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
