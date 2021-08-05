@@ -6,15 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class UnlistedItems extends AppCompatActivity {
 
     ItemDB itemDB;
     RecyclerView recyclerView;
-
-    String name[], desc[], status[], category[];
-    double buyPrice[], sellPrice[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +24,34 @@ public class UnlistedItems extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.unlistedRecyclerView);
 
-        //Fill variables with database items
-        name = itemDB.itemDao().getItemNames();
-        desc = itemDB.itemDao().getItemDesc();
-        status = itemDB.itemDao().getItemStatus();
-        category = itemDB.itemDao().getItemCategory();
-        buyPrice = itemDB.itemDao().getItemBuyPrice();
-        sellPrice = itemDB.itemDao().getItemSellPrice();
+        //Initialize and set Items array with every item with "unlisted" in status
+        Items unlistedStatus[];
+        unlistedStatus = itemDB.itemDao().getItemFromStatus("unlisted");
 
-        UnlistedAdapter unlistedAdapter = new UnlistedAdapter(this, name, desc, status, buyPrice, sellPrice, category);
+        //Get length of array so we can loop
+        int length = unlistedStatus.length;
+
+        //Initialize all variables
+        String name[] = new String[length];
+        String desc[] = new String[length];
+        String category[] = new String[length];
+        double buyPrice[] = new double[length];
+        double sellPrice[] = new double[length];
+        int itemID[] = new int[length];
+
+
+        //For loop to populate arrays for "unlisted" items
+        for(int i = 0; i<unlistedStatus.length; i++){
+            name[i] = unlistedStatus[i].getName();
+            desc[i] = unlistedStatus[i].getDesc();
+            category[i] = unlistedStatus[i].getCategory();
+            buyPrice[i] = unlistedStatus[i].getBuyPrice();
+            sellPrice[i] = unlistedStatus[i].getSellPrice();
+            itemID[i] = unlistedStatus[i].getItemID();
+        }
+
+        //Get recycler set up with adapter
+        UnlistedAdapter unlistedAdapter = new UnlistedAdapter(this, name, desc, buyPrice, sellPrice, category, itemID);
         recyclerView.setAdapter(unlistedAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="listItem"
-                android:text="list"
+                android:text="DELETE"
                 android:textCursorDrawable="@drawable/recycler_button"
                 app:layout_constraintBottom_toTopOf="@+id/btnEdit"
                 app:layout_constraintStart_toStartOf="@+id/btnEdit"

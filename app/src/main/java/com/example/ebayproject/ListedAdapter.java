@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.UnlistedViewHolder> {
+public class ListedAdapter extends RecyclerView.Adapter<ListedAdapter.ListedViewHolder> {
 
     //Initialize variables that go into the recycler
     String name[], desc[], status[], category[];
@@ -21,7 +21,7 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
     Context context;
     ItemDB itemDB;
 
-    public UnlistedAdapter(Context ct, String itemName[], String itemDesc[],
+    public ListedAdapter(Context ct, String itemName[], String itemDesc[],
                            double itemBuyPrice[], double itemSellPrice[], String itemCategory[], int itemID[]){
         //set the recycler constructor values to the variables
         context = ct;
@@ -34,40 +34,35 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
 
     }
 
-    //Put the card in view
     @NonNull
     @Override
-    public UnlistedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.unlisted_row, parent, false);
-        return new UnlistedViewHolder(view);
-
+        View view = inflater.inflate(R.layout.listed_row, parent, false);
+        return new ListedViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UnlistedViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListedViewHolder holder, int position) {
         //Fill the recycler view with variables
         holder.titleText.setText(name[position]);
         holder.descText.setText(desc[position]);
         holder.boughtForText.setText(String.valueOf(buyPrice[position]));
         holder.sellForText.setText(String.valueOf(sellPrice[position]));
         holder.position = position;
-
     }
 
-    //Number of recycler elements
     @Override
     public int getItemCount() {
         return name.length;
     }
 
-    public class UnlistedViewHolder extends RecyclerView.ViewHolder{
+    public class ListedViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleText, descText, boughtForText, sellForText;
         int position;
 
-
-        public UnlistedViewHolder(@NonNull final View itemView) {
+        public ListedViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             titleText = itemView.findViewById(R.id.txtName);
@@ -81,6 +76,7 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
                     .allowMainThreadQueries().build();
 
 
+
             //On click listener to move to listed
             itemView.findViewById(R.id.btnList).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +85,7 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
 
 
                     //update database to make status listed
-                    itemDB.itemDao().updateItemStatusToListed(itemID);
+                    itemDB.itemDao().updateItemStatusToSold(itemID);
                     //Jump to main page
                     Intent intent = new Intent(itemView.getContext(), MainActivity.class);
                     itemView.getContext().startActivity(intent);

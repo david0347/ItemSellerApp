@@ -23,4 +23,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddItems.class);
         startActivity(intent);
     }
+
+    public void goToListedItems(View view){
+        Intent intent = new Intent(this, ListedItems.class);
+        startActivity(intent);
+    }
+
+    public void goToSoldItems(View view){
+        Intent intent = new Intent(this, SoldItems.class);
+        startActivity(intent);
+    }
 }

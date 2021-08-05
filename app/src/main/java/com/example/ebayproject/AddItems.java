@@ -55,9 +55,9 @@ public class AddItems extends AppCompatActivity {
 
             //If values are greater than 0, create object parameters
             if(boughtFor > 0 || sellFor > 0){
-                newItem.setCategory(category.getSelectedItem().toString());
-                newItem.setName(itemName.getText().toString());
-                newItem.setDesc(itemDesc.getText().toString());
+                newItem.setCategory(category.getSelectedItem().toString().trim());
+                newItem.setName(itemName.getText().toString().trim());
+                newItem.setDesc(itemDesc.getText().toString().trim());
                 newItem.setStatus("unlisted");
                 newItem.setBuyPrice(boughtFor);
                 newItem.setSellPrice(sellFor);
