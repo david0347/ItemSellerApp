@@ -33,4 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SoldItems.class);
         startActivity(intent);
     }
+
+    public void goToEdit(View view){
+        //Intent intent = new Intent(this, EditItems.class);
+        //intent.putExtra("activity", 0);
+        //startActivity(intent);
+    }
 }

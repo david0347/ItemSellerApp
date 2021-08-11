@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import java.text.DecimalFormat;
+
 public class SoldAdapter extends RecyclerView.Adapter<SoldAdapter.SoldViewHolder> {
     //Initialize variables that go into the recycler
     String name[], desc[], status[], category[];
@@ -43,11 +45,14 @@ public class SoldAdapter extends RecyclerView.Adapter<SoldAdapter.SoldViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SoldAdapter.SoldViewHolder holder, int position) {
+        //Format into currency
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        holder.boughtForText.setText("$" + df.format(buyPrice[position]));
+        holder.sellForText.setText("$" + df.format(sellPrice[position]));
+
         //Fill the recycler view with variables
         holder.titleText.setText(name[position]);
         holder.descText.setText(desc[position]);
-        holder.boughtForText.setText(String.valueOf(buyPrice[position]));
-        holder.sellForText.setText(String.valueOf(sellPrice[position]));
         holder.position = position;
 
     }
@@ -89,6 +94,18 @@ public class SoldAdapter extends RecyclerView.Adapter<SoldAdapter.SoldViewHolder
 
 
                     Toast.makeText(itemView.getContext(), "Successfully Deleted " + name[position], Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            itemView.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //Start intent to send to EditItems, send the ItemID to edit
+                    Intent goToEdit = new Intent(itemView.getContext(), EditItems.class);
+                    goToEdit.putExtra("itemID", id[position]);
+                    goToEdit.putExtra("activity", 3);
+                    itemView.getContext().startActivity(goToEdit);
                 }
             });
         }

@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import java.text.DecimalFormat;
+
 public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.UnlistedViewHolder> {
 
     //Initialize variables that go into the recycler
@@ -46,11 +48,14 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
 
     @Override
     public void onBindViewHolder(@NonNull UnlistedViewHolder holder, int position) {
+        //Format into currency
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        holder.boughtForText.setText("$" + df.format(buyPrice[position]));
+        holder.sellForText.setText("$" + df.format(sellPrice[position]));
+
         //Fill the recycler view with variables
         holder.titleText.setText(name[position]);
         holder.descText.setText(desc[position]);
-        holder.boughtForText.setText(String.valueOf(buyPrice[position]));
-        holder.sellForText.setText(String.valueOf(sellPrice[position]));
         holder.position = position;
 
     }
@@ -96,6 +101,19 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
 
 
                     Toast.makeText(itemView.getContext(), "Successfully Listed " + name[position], Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            //If user hits btnEdit
+            itemView.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //Start intent to send to EditItems, send the ItemID to edit
+                    Intent goToEdit = new Intent(itemView.getContext(), EditItems.class);
+                    goToEdit.putExtra("itemID", id[position]);
+                    goToEdit.putExtra("activity", 1);
+                    itemView.getContext().startActivity(goToEdit);
                 }
             });
         }
