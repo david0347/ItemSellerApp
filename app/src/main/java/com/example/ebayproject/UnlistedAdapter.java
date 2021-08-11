@@ -2,6 +2,7 @@ package com.example.ebayproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,8 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
         public UnlistedViewHolder(@NonNull final View itemView) {
             super(itemView);
 
+            SharedPreferences unlistedItems;
+
             titleText = itemView.findViewById(R.id.txtName);
             descText = itemView.findViewById(R.id.txtDesc);
             boughtForText = itemView.findViewById(R.id.txtBoughtFor);
@@ -92,6 +95,10 @@ public class UnlistedAdapter extends RecyclerView.Adapter<UnlistedAdapter.Unlist
                 public void onClick(View v) {
                     int itemID = id[position];
 
+                    SharedPreferences listedItemPreference = context.getSharedPreferences("com.example.statistics", Context.MODE_PRIVATE);
+                    int totalListed = listedItemPreference.getInt("listedItem", 0);
+                    totalListed+=1;
+                    listedItemPreference.edit().putInt("listedItem", totalListed).apply();
 
                     //update database to make status listed
                     itemDB.itemDao().updateItemStatusToListed(itemID);

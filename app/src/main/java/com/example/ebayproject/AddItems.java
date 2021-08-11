@@ -3,7 +3,8 @@ package com.example.ebayproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -30,8 +31,7 @@ public class AddItems extends AppCompatActivity {
     }
 
     public void goToMainActivity(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public void addItem(View view){
@@ -64,12 +64,18 @@ public class AddItems extends AppCompatActivity {
 
                 itemDB.itemDao().addItem(newItem);
 
+
+                //Running total of new unlisted items for statistics
+                SharedPreferences unlistedItemPreference = this.getSharedPreferences("com.example.statistics", Context.MODE_PRIVATE);
+                int totalUnlisted = unlistedItemPreference.getInt("unlistedItem", 0);
+                totalUnlisted+=1;
+                unlistedItemPreference.edit().putInt("unlistedItem", totalUnlisted).apply();
+
                 //Print successful
                 Toast.makeText(AddItems.this, "Added Item", Toast.LENGTH_SHORT).show();
 
                 //Go back to main
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
 
                 //Else print out error message and reset bought/sell prices
             }else{
@@ -124,7 +130,6 @@ public class AddItems extends AppCompatActivity {
         }catch(Exception e){
 
         }
-
         return parsedDoubles;
     }
 }

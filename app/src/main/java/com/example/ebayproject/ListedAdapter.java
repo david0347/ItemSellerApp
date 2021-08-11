@@ -2,6 +2,7 @@ package com.example.ebayproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,19 @@ public class ListedAdapter extends RecyclerView.Adapter<ListedAdapter.ListedView
                 @Override
                 public void onClick(View v) {
                     int itemID = id[position];
+                    SharedPreferences listedItemsPreference = context.getSharedPreferences("com.example.statistics", Context.MODE_PRIVATE);
+                    int totalSold = listedItemsPreference.getInt("soldItem", 0);
+                    float totalCost = listedItemsPreference.getFloat("totalCost", 0);
+                    float totalRevenue = listedItemsPreference.getFloat("totalRevenue", 0);
 
+                    totalSold+=1;
+                    listedItemsPreference.edit().putInt("soldItem", totalSold).apply();
+
+                    totalCost+= itemDB.itemDao().getItemBuyPrice(itemID);
+                    listedItemsPreference.edit().putFloat("totalCost", totalCost).apply();
+
+                    totalRevenue+= itemDB.itemDao().getItemSellPrice(itemID);
+                    listedItemsPreference.edit().putFloat("totalRevenue", totalRevenue).apply();
 
                     //update database to make status listed
                     itemDB.itemDao().updateItemStatusToSold(itemID);
@@ -96,7 +109,7 @@ public class ListedAdapter extends RecyclerView.Adapter<ListedAdapter.ListedView
                     itemView.getContext().startActivity(intent);
 
 
-                    Toast.makeText(itemView.getContext(), "Successfully Listed " + name[position], Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), "Successfully Sold " + name[position], Toast.LENGTH_SHORT).show();
                 }
             });
 

@@ -34,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToEdit(View view){
-        //Intent intent = new Intent(this, EditItems.class);
-        //intent.putExtra("activity", 0);
-        //startActivity(intent);
+    public void goToStats(View view){
+        Intent intent = new Intent(this, Statistics.class);
+        startActivity(intent);
     }
 }

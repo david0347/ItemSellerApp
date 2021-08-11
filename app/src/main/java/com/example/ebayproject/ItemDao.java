@@ -16,29 +16,11 @@ public interface ItemDao {
     @Query("SELECT * FROM Items WHERE :id = itemID")
     Items getItemByID(int id);
 
-    @Query("SELECT * FROM Items WHERE :name LIKE itemName")
-    Items getItemByName(String name);
+    @Query("SELECT itemBuyPrice FROM Items WHERE :id LIKE itemID")
+    double getItemBuyPrice(int id);
 
-    @Query("SELECT COUNT(*) FROM ITEMS")
-    int tableSize();
-
-    @Query("SELECT itemName FROM Items")
-    String[] getItemNames();
-
-    @Query("SELECT itemDesc FROM Items")
-    String[] getItemDesc();
-
-    @Query("SELECT itemStatus FROM Items")
-    String[] getItemStatus();
-
-    @Query("SELECT itemCategory FROM Items")
-    String[] getItemCategory();
-
-    @Query("SELECT itemBuyPrice FROM Items")
-    double[] getItemBuyPrice();
-
-    @Query("SELECT itemSellPrice FROM Items")
-    double[] getItemSellPrice();
+    @Query("SELECT itemSellPrice FROM Items WHERE :id LIKE itemID")
+    double getItemSellPrice(int id);
 
     @Query("SELECT itemID FROM Items")
     int[] getItemID();
